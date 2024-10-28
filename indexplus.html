@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟搜索引擎</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #search-box {
+            width: 50%;
+            max-width: 600px;
+            display: flex;
+        }
+        #search-input {
+            flex: 1;
+            padding: 10px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        #search-button {
+            padding: 10px;
+            font-size: 18px;
+            border: none;
+            background-color: #4285f4;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #results {
+            margin-top: 20px;
+            width: 50%;
+            max-width: 600px;
+        }
+        .result-item {
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>模拟搜索引擎</h1>
+    <div id="search-box">
+        <input type="text" id="search-input" placeholder="输入搜索内容...">
+        <button id="search-button">搜索</button>
+    </div>
+    <div id="results"></div>
+
+    <script>
+        const searchButton = document.getElementById('search-button');
+        const searchInput = document.getElementById('search-input');
+        const resultsDiv = document.getElementById('results');
+
+        const searchData = {
+            "朱乐颜": ["朱乐颜好漂亮", "朱乐颜 南开大学(八里台校区）校花", "朱乐颜 南开大学2024国家奖学金"],
+            "余璐": ["余璐大美女", "余璐 好美", "余璐 南开大学（津南校区）校花"],
+            "javascript": ["javascript tutorial", "javascript framework", "javascript vs python"],
+        };
+
+        searchButton.addEventListener('click', function() {
+            const query = searchInput.value.toLowerCase();
+            resultsDiv.innerHTML = '';
+
+            if (searchData[query]) {
+                searchData[query].forEach(item => {
+                    const resultItem = document.createElement('div');
+                    resultItem.classList.add('result-item');
+                    resultItem.textContent = item;
+                    resultsDiv.appendChild(resultItem);
+                });
+            } else {
+                resultsDiv.textContent = '未找到相关结果';
+            }
+        });
+    </script>
+</body>
+</html>
